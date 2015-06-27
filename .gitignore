@@ -12,5 +12,4 @@ Makefile.in
 /install-sh
 /missing
 
-electsys.crx
 electsys.pem
