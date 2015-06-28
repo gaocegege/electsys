@@ -5,7 +5,7 @@
  */
 
 function nhce_main(){
-	if (!inUrl("202.120.59.230"))
+	if (!inUrl("202.120.61.72"))
         return 0;
 		
 
