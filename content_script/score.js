@@ -1,7 +1,7 @@
 function optimize_gpa_query(){
-    if(!inUrl("/edu/StudentScore/StudentScoreQuery.aspx"))
+    if(!inUrl("/edu/StudentScore/B_StudentScoreQuery.aspx"))
         return 0;
-	if(jQuery("#ddlXN").val() == "2010-2011" && jQuery("#ddlXQ").val() == "1" && !has_result_table()){
+	if(jQuery("#ddlXN").val() == "2014-2015" && jQuery("#ddlXQ").val() == "2" && !has_result_table()){
 		jQuery("#ddlXQ").find("[selected=selected]").removeAttr("selected");
 		jQuery("#ddlXN").find("[selected=selected]").removeAttr("selected");
 
@@ -278,4 +278,26 @@ function index_show_score_query(){
 		});}
 	,0);
 
+}
+
+function optimize_core_score_query() {
+	if(!inUrl("/edu/student/CoreCourses.aspx"))
+        return 0;
+    var score = 0;
+    var credit = 0;
+    var courses = jQuery("#dgSet tr");
+    courses.each(function () {
+    	var td = jQuery(this).children();
+    	if (td.slice(7, 8).text() != "成绩") {
+    		if (isGpa(td.slice(7, 8).text())) {
+    			score += gpa2score(td.slice(7, 8).text()) * parseFloat(td.slice(8).text());
+    			credit += parseFloat(td.slice(8).text());
+    		}
+    		else {
+    			score += parseFloat(td.slice(7, 8).text()) * parseFloat(td.slice(8).text());
+    			credit += parseFloat(td.slice(8).text());
+    		}
+    	}
+    });
+    jQuery('table').first().prepend("<p>你的学积分为： {s}，仅供参考</p>".format({s: (score / credit).toFixed(2)}));
 }

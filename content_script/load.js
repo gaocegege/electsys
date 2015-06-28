@@ -97,6 +97,8 @@ function main()
 		//index_show_score_query();
         //修业查看中计算总绩点
         optimize_myEductionList();
+        //优化核心课程查询
+        optimize_core_score_query();
 
 		//快速评教
 		fast_eval_index();
